@@ -10,18 +10,21 @@ namespace Perelesoq.TestAssignment.Core.Bootstrapping
 
         private GameLevelsConfig _levels;
         private SceneLoader _sceneLoader;
+        private bool _isLoading = false;
 
         private async void Start()
         {
             _levels = new GameLevelsConfig();
             _sceneLoader = new SceneLoader(_levels.ProjectScenes);
-            await _sceneLoader.LoadLevel(_levels.TestLevel);
-
-            _loadingScreen.SetActive(false);
+            await Handle(_sceneLoader.LoadLevel(_levels.TestLevel));
         }
 
         private void Update()
         {
+            if (_isLoading)
+            {
+                return;
+            }
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Reload().Forget();
@@ -30,9 +33,18 @@ namespace Perelesoq.TestAssignment.Core.Bootstrapping
 
         private async UniTask Reload()
         {
-            _loadingScreen.SetActive(true);
-            await _sceneLoader.LoadLevel(_levels.TestLevel);
-            _loadingScreen.SetActive(false);
+            await Handle(_sceneLoader.LoadLevel(_levels.TestLevel));
+        }
+
+        private async UniTask Handle(UniTask task)
+        {
+            _isLoading = true;
+            _loadingScreen.SetActive(_isLoading);
+
+            await task;
+
+            _isLoading = false;
+            _loadingScreen.SetActive(_isLoading);
         }
     }
 }
