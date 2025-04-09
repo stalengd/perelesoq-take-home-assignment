@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Perelesoq.TestAssignment.Core.LevelManagement;
+using Perelesoq.TestAssignment.Core.Runners;
 using UnityEngine;
 
 namespace Perelesoq.TestAssignment.Core.Bootstrapping
@@ -12,11 +13,13 @@ namespace Perelesoq.TestAssignment.Core.Bootstrapping
         private SceneLoader _sceneLoader;
         private bool _isLoading = false;
 
+        private LevelRunner _levelRunner;
+
         private async void Start()
         {
             _levels = new GameLevelsConfig();
             _sceneLoader = new SceneLoader(_levels.ProjectScenes);
-            await Handle(_sceneLoader.LoadLevel(_levels.TestLevel));
+            await RunLevel();
         }
 
         private void Update()
@@ -25,15 +28,28 @@ namespace Perelesoq.TestAssignment.Core.Bootstrapping
             {
                 return;
             }
+
+            _levelRunner?.Update();
+
             if (Input.GetKeyDown(KeyCode.R))
             {
                 Reload().Forget();
             }
         }
 
+        private async UniTask RunLevel()
+        {
+            _levelRunner?.Dispose();
+
+            await Handle(_sceneLoader.LoadLevel(_levels.TestLevel));
+
+            _levelRunner = new();
+            _levelRunner.Start();
+        }
+
         private async UniTask Reload()
         {
-            await Handle(_sceneLoader.LoadLevel(_levels.TestLevel));
+            await RunLevel();
         }
 
         private async UniTask Handle(UniTask task)

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2898381017872719860}
   - component: {fileID: 8490477803905463825}
   - component: {fileID: 7185220706437533140}
+  - component: {fileID: 2149462989485650669}
+  - component: {fileID: 6369593036544470103}
   m_Layer: 0
   m_Name: CeilLamp
   m_TagString: Untagged
@@ -83,3 +85,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2149462989485650669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684934527256959382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7fabc7d5b9ab594ab03f2a7fb84ee5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputPort: {fileID: 6369593036544470103}
+  _gameView: {fileID: 1684934527256959382}
+--- !u!114 &6369593036544470103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684934527256959382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d4360f3e1d3d24e92cccf398a0f812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connectedTo: {fileID: 0}
