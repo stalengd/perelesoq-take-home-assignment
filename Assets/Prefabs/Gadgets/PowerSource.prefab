@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1b5a85ca357da439923962474140e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _metadata:
+    <Name>k__BackingField: 
   _outputPort: {fileID: 8311853818462024158}
   _maxPower: 1200
 --- !u!114 &8311853818462024158

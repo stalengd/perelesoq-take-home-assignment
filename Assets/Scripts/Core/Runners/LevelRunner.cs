@@ -33,6 +33,7 @@ namespace Perelesoq.TestAssignment.Core.Runners
             {
                 _diContainer.Inject(initializer);
                 var device = initializer.Initialize();
+                device.Metadata = initializer.CreateDeviceMetadata(device);
                 _deviceNetwork.AddDevice(device);
                 devices.Add(device);
             }

@@ -1,4 +1,4 @@
-﻿using Perelesoq.TestAssignment.Core.DevicePresenters;
+using Perelesoq.TestAssignment.Core.DevicePresenters;
 using R3;
 
 namespace Perelesoq.TestAssignment.Core.Devices.LogicGates
@@ -21,6 +21,7 @@ namespace Perelesoq.TestAssignment.Core.Devices.LogicGates
 
         public override void Start()
         {
+            _widgetView.SetName(_device.Metadata?.Name);
             _device.InputA.IsPowered
                 .Subscribe(v =>
                 {

@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 1393251361472323226, guid: 246750ba87993bc448275a44e289674c, type: 3}
+      propertyPath: _metadata.<Name>k__BackingField
+      value: Gate AND
+      objectReference: {fileID: 0}
     - target: {fileID: 3178719343651610749, guid: 246750ba87993bc448275a44e289674c, type: 3}
       propertyPath: m_Mesh
       value: 

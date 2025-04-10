@@ -10759,8 +10759,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9780b38445efbd459d5b12e98467248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _metadata:
+    <Name>k__BackingField: Camera
   _gameView: {fileID: 2926612336400693124}
   _widgetPrefab: {fileID: 4025343933188894130, guid: a008335cf31c7ed42af6cd66b54f9a9d, type: 3}
+  _isActiveAtStart: 0
 --- !u!114 &2926612336400693124
 MonoBehaviour:
   m_ObjectHideFlags: 0

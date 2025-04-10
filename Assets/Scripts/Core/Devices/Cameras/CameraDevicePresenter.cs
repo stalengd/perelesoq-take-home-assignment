@@ -28,6 +28,7 @@ namespace Perelesoq.TestAssignment.Core.Devices.Cameras
 
         public override void Start()
         {
+            _widgetView.SetName(_device.Metadata?.Name);
             _gameCameraPresenter.RegisterCameraView(_device, _gameView);
             _widgetView.SelectClicked
                 .Subscribe(_ =>

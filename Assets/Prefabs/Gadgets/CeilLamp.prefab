@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fabc7d5b9ab594ab03f2a7fb84ee5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _metadata:
+    <Name>k__BackingField: Cell Lamp
   _inputPort: {fileID: 6369593036544470103}
   _gameView: {fileID: 1684934527256959382}
 --- !u!114 &6369593036544470103

@@ -1,4 +1,4 @@
-﻿using Perelesoq.TestAssignment.Core.DevicePresenters;
+using Perelesoq.TestAssignment.Core.DevicePresenters;
 using R3;
 
 namespace Perelesoq.TestAssignment.Core.Devices.Switches
@@ -16,6 +16,7 @@ namespace Perelesoq.TestAssignment.Core.Devices.Switches
 
         public override void Start()
         {
+            _widget.SetName(_device.Metadata?.Name);
             _widget.Toggled
                 .Subscribe(v => _device.Switch(v))
                 .AddTo(Disposables);

@@ -7,6 +7,8 @@ namespace Perelesoq.TestAssignment.Core.DeviceInitializers
 {
     public abstract class DeviceInitializer : MonoBehaviour
     {
+        [SerializeField] private DeviceMetadata _metadata;
+
         private readonly List<DeviceInputPortInitializer> _inputPorts = new();
         private readonly List<DeviceOutputPortInitializer> _outputPorts = new();
 
@@ -15,6 +17,11 @@ namespace Perelesoq.TestAssignment.Core.DeviceInitializers
         public virtual DevicePresenter InitializePresenter(Device device)
         {
             return null;
+        }
+
+        public virtual DeviceMetadata CreateDeviceMetadata(Device device)
+        {
+            return _metadata;
         }
 
         public void InitializeConnections(Device device, DeviceNetwork network)

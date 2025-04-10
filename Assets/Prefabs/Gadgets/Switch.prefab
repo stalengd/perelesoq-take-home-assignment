@@ -741,6 +741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641b812f608ceb641b752696dacd50ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _metadata:
+    <Name>k__BackingField: Switcher
   _inputPort: {fileID: 6568701857707558802}
   _outputPort: {fileID: 3881988978282517172}
   _widgetPrefab: {fileID: 5984233028194536279, guid: 2bd7cbc29f1abfa499f4b61e26b4b0b2, type: 3}

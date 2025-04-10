@@ -1692,6 +1692,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fabc7d5b9ab594ab03f2a7fb84ee5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _metadata:
+    <Name>k__BackingField: Lamp
   _inputPort: {fileID: 7027400047757131254}
   _gameView: {fileID: 8762346044433643111}
 --- !u!114 &7027400047757131254

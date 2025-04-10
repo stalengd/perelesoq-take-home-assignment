@@ -1,4 +1,4 @@
-﻿using Perelesoq.TestAssignment.Core.ControlPanel;
+using Perelesoq.TestAssignment.Core.ControlPanel;
 using R3;
 using UnityEngine;
 using UnityEngine.UI;
