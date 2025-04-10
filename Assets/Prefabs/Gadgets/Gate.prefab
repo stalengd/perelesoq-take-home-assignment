@@ -161,6 +161,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1202604170031219956}
+  - component: {fileID: 1393251361472323226}
+  - component: {fileID: 4947575274194546868}
+  - component: {fileID: 5916778383568124596}
+  - component: {fileID: 7424877646997580683}
+  - component: {fileID: 3158213253575209428}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -188,6 +193,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
+--- !u!114 &1393251361472323226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202604170031219955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6f30edfbdd3bb49995bccf41061fe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputPortA: {fileID: 4947575274194546868}
+  _inputPortB: {fileID: 5916778383568124596}
+  _outputPort: {fileID: 7424877646997580683}
+  _gameView: {fileID: 3158213253575209428}
+  _widgetPrefab: {fileID: 7522007310549625807, guid: 77581754d3dbcf049bbbb9cb14afe641, type: 3}
+  _operation: 0
+--- !u!114 &4947575274194546868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202604170031219955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d4360f3e1d3d24e92cccf398a0f812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connectedTo: {fileID: 0}
+--- !u!114 &5916778383568124596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202604170031219955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d4360f3e1d3d24e92cccf398a0f812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connectedTo: {fileID: 0}
+--- !u!114 &7424877646997580683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202604170031219955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3494a8d6c69ef0d4eb9381896b935dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3158213253575209428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202604170031219955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05de368df56b114a96bff9855bde4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputPortAIndicator: {fileID: 7389468757001462661}
+  _inputPortBIndicator: {fileID: 4735559387770921667}
+  _outputPortIndicator: {fileID: 3386247213280508309}
+  _portPoweredMaterial: {fileID: 2100000, guid: 8f06f88536682b94abaffa2764b52f9f, type: 2}
+  _portUnpoweredMaterial: {fileID: 2100000, guid: 0beffbed72a29764c911945ff80620af, type: 2}
 --- !u!1 &2670087269659233843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3611,8 +3689,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 935a14bb2096cb943a7035509a29ed89, type: 2}
   - {fileID: 2100000, guid: 0beffbed72a29764c911945ff80620af, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
