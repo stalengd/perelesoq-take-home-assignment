@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Perelesoq.TestAssignment.Core.DeviceWidgets
+namespace Perelesoq.TestAssignment.Core.ControlPanel
 {
     public abstract class DeviceWidgetView : MonoBehaviour
     {

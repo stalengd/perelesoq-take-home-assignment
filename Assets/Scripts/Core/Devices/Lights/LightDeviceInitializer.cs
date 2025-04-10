@@ -1,4 +1,4 @@
-﻿using Perelesoq.TestAssignment.Core.DeviceInitializers;
+using Perelesoq.TestAssignment.Core.DeviceInitializers;
 using UnityEngine;
 
 namespace Perelesoq.TestAssignment.Core.Devices.Lights
@@ -9,10 +9,9 @@ namespace Perelesoq.TestAssignment.Core.Devices.Lights
         [Space]
         [SerializeField] private GameObject _gameView;
 
-        public override Device Initialize(DeviceNetwork network)
+        public override Device Initialize()
         {
             var device = new LightDevice(_gameView);
-            network.AddDevice(device);
             BindPort(device.Input, _inputPort);
             return device;
         }

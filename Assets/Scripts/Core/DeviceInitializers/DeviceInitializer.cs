@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Perelesoq.TestAssignment.Core.DevicePresenters;
 using Perelesoq.TestAssignment.Core.Devices;
-using Perelesoq.TestAssignment.Core.DeviceWidgets;
 using UnityEngine;
 
 namespace Perelesoq.TestAssignment.Core.DeviceInitializers
@@ -11,9 +10,9 @@ namespace Perelesoq.TestAssignment.Core.DeviceInitializers
         private readonly List<DeviceInputPortInitializer> _inputPorts = new();
         private readonly List<DeviceOutputPortInitializer> _outputPorts = new();
 
-        public abstract Device Initialize(DeviceNetwork network);
+        public abstract Device Initialize();
 
-        public virtual DevicePresenter InitializePresenter(Device device, DeviceWidgetsContainer widgetsContainer)
+        public virtual DevicePresenter InitializePresenter(Device device)
         {
             return null;
         }

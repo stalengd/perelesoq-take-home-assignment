@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using Perelesoq.TestAssignment.Core.DeviceInitializers;
 using Perelesoq.TestAssignment.Core.DevicePresenters;
 using Perelesoq.TestAssignment.Core.Devices;
-using Perelesoq.TestAssignment.Core.DeviceWidgets;
+using Perelesoq.TestAssignment.Core.Di;
 using UnityEngine;
+using Zenject;
 
 namespace Perelesoq.TestAssignment.Core.Runners
 {
     public sealed class LevelRunner : IDisposable
     {
+        private DiContainer _diContainer;
         private DeviceNetwork _deviceNetwork;
         private DeviceNetworkDiagnosticsContainer _diagnostics;
         private DevicePresenterManager _presenterManager;
 
         public void Start()
         {
+            PrepareDi();
+
             // This is sort of hit to performance on initial start, but this game is a prototype.
             var deviceInitializers = UnityEngine.Object.FindObjectsOfType<DeviceInitializer>(includeInactive: false);
-            var widgetsContainer = UnityEngine.Object.FindObjectOfType<DeviceWidgetsContainer>();
 
             _deviceNetwork = new DeviceNetwork();
 #if DEBUG
@@ -28,7 +31,9 @@ namespace Perelesoq.TestAssignment.Core.Runners
             _presenterManager = new DevicePresenterManager();
             foreach (var initializer in deviceInitializers)
             {
-                var device = initializer.Initialize(_deviceNetwork);
+                _diContainer.Inject(initializer);
+                var device = initializer.Initialize();
+                _deviceNetwork.AddDevice(device);
                 devices.Add(device);
             }
 
@@ -37,7 +42,7 @@ namespace Perelesoq.TestAssignment.Core.Runners
                 var initializer = deviceInitializers[i];
                 var device = devices[i];
                 initializer.InitializeConnections(device, _deviceNetwork);
-                var presenter = initializer.InitializePresenter(device, widgetsContainer);
+                var presenter = initializer.InitializePresenter(device);
                 if (presenter != null)
                 {
                     _presenterManager.Add(presenter);
@@ -53,7 +58,6 @@ namespace Perelesoq.TestAssignment.Core.Runners
             _deviceNetwork.SetOutputPowered(_deviceNetwork.PowerSource.Output, true);
 
             _presenterManager.Start();
-
         }
 
         public void Update()
@@ -67,6 +71,26 @@ namespace Perelesoq.TestAssignment.Core.Runners
         public void Dispose()
         {
             _presenterManager.Dispose();
+        }
+
+        private void PrepareDi()
+        {
+            var sceneContext = SceneContext.Create();
+            sceneContext.Install();
+
+            _diContainer = sceneContext.Container;
+
+            var levelContextInstallers = UnityEngine.Object.FindObjectsOfType<LevelContextInstaller>();
+            foreach (var levelInstaller in levelContextInstallers)
+            {
+                _diContainer.Inject(levelInstaller);
+                levelInstaller.InstallBindings();
+            }
+
+            LevelViewInstaller.Install(_diContainer);
+            LevelModelInstaller.Install(_diContainer);
+
+            sceneContext.Resolve();
         }
     }
 }

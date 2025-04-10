@@ -9,11 +9,9 @@ namespace Perelesoq.TestAssignment.Core.Devices.PowerSources
         [Space]
         [SerializeField] private float _maxPower = 1200;
 
-        public override Device Initialize(DeviceNetwork network)
+        public override Device Initialize()
         {
             PowerSourceDevice device = new(_maxPower);
-            network.AddDevice(device);
-            network.PowerSource = device;
             BindPort(device.Output, _outputPort);
             return device;
         }

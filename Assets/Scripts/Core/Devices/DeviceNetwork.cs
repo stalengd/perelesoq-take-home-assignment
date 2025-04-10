@@ -1,11 +1,12 @@
 using ObservableCollections;
 using Perelesoq.TestAssignment.Core.Devices.PowerSources;
+using UnityEngine;
 
 namespace Perelesoq.TestAssignment.Core.Devices
 {
     public sealed class DeviceNetwork
     {
-        public PowerSourceDevice PowerSource { get; set; }
+        public PowerSourceDevice PowerSource { get; private set; }
         public IObservableCollection<Device> Devices => _devices;
 
         private readonly ObservableHashSet<Device> _devices = new();
@@ -14,6 +15,18 @@ namespace Perelesoq.TestAssignment.Core.Devices
         {
             device.Network = this;
             _devices.Add(device);
+
+            if (device is PowerSourceDevice powerSource)
+            {
+                if (PowerSource == null)
+                {
+                    PowerSource = powerSource;
+                }
+                else
+                {
+                    Debug.LogError("Tried to add second power source to the network, this is not supported");
+                }
+            }
         }
 
         public void Connect(DeviceOutputPort portA, DeviceInputPort portB)
