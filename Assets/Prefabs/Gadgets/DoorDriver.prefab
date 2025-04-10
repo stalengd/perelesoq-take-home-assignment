@@ -181,6 +181,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7870429339412488838}
+  - component: {fileID: 1814467522412421446}
+  - component: {fileID: 3546742106641475757}
+  - component: {fileID: 8883579778838443139}
   m_Layer: 0
   m_Name: DoorDriver
   m_TagString: Untagged
@@ -206,6 +209,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814467522412421446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3701008896104864288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bea47ef14068774da279e2992e9726c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _metadata:
+    <Name>k__BackingField: Door Driver
+  _inputPort: {fileID: 3546742106641475757}
+  _gameView: {fileID: 8883579778838443139}
+  _widgetPrefab: {fileID: 6765926548700033407, guid: f391bf2cd9b2b5a4b87539c73db9f849, type: 3}
+  _transitionDurationSeconds: 5
+  _activeRequiredPower: 100
+  _isOpened: 0
+--- !u!114 &3546742106641475757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3701008896104864288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d4360f3e1d3d24e92cccf398a0f812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connectedTo: {fileID: 0}
+--- !u!114 &8883579778838443139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3701008896104864288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc6004c493862f40995c0959c785b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateText: {fileID: 7575623853682366001}
+  _doorShaft: {fileID: 0}
+  _openedRotation: {x: 0, y: 0, z: 0}
+  _closedRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &4218355069146211326
 GameObject:
   m_ObjectHideFlags: 0

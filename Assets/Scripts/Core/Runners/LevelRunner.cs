@@ -63,6 +63,14 @@ namespace Perelesoq.TestAssignment.Core.Runners
 
         public void Update()
         {
+            var deltaTime = TimeSpan.FromSeconds(Time.deltaTime);
+            foreach (var device in _deviceNetwork.Devices)
+            {
+                device.Update(deltaTime);
+            }
+
+            _presenterManager.Update();
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _diagnostics?.LogDevicesTable();

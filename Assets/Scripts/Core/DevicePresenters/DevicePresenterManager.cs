@@ -31,6 +31,14 @@ namespace Perelesoq.TestAssignment.Core.DevicePresenters
             }
             _presenters.Clear();
         }
+
+        public void Update()
+        {
+            foreach (var presenter in _presenters)
+            {
+                presenter.Update();
+            }
+        }
     }
 
     public abstract class DevicePresenter : IDisposable
@@ -39,9 +47,8 @@ namespace Perelesoq.TestAssignment.Core.DevicePresenters
 
         public abstract void Start();
 
-        public virtual void Dispose()
-        {
+        public virtual void Dispose() { }
 
-        }
+        public virtual void Update() { }
     }
 }
