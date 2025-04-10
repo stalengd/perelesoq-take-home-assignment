@@ -48,21 +48,28 @@ namespace Perelesoq.TestAssignment.Core.Devices
             for (var i = 0; i < devices.Count; i++)
             {
                 var device = devices[i];
+                stringBuilder.Append(device.Metadata?.Name);
+                stringBuilder.Append(' ');
+                stringBuilder.Append('(');
                 stringBuilder.Append(device.GetType().Name);
+                stringBuilder.Append(')');
                 stringBuilder.Append(' ');
                 stringBuilder.Append("\t");
-                foreach (var input in _devicePorts[device].inputs)
+                if (_devicePorts.TryGetValue(device, out var ports))
                 {
-                    var index = _inputIds[input];
-                    var outIndex = input.Connection.Value != null
-                        ? _outputIds[input.Connection.Value]
-                        : -1;
-                    stringBuilder.Append($"IN({index})=OUT({outIndex}) P={input.IsPowered.Value} \t| ");
-                }
-                foreach (var output in _devicePorts[device].outputs)
-                {
-                    var index = _outputIds[output];
-                    stringBuilder.Append($"OUT({index}) A={output.IsActive.Value} P={output.IsPowered.Value} \t| ");
+                    foreach (var input in ports.inputs)
+                    {
+                        var index = _inputIds[input];
+                        var outIndex = input.Connection.Value != null
+                            ? _outputIds[input.Connection.Value]
+                            : -1;
+                        stringBuilder.Append($"IN({index})=OUT({outIndex}) P={input.IsPowered.Value} \t| ");
+                    }
+                    foreach (var output in ports.outputs)
+                    {
+                        var index = _outputIds[output];
+                        stringBuilder.Append($"OUT({index}) A={output.IsActive.Value} P={output.IsPowered.Value} \t| ");
+                    }
                 }
                 stringBuilder.AppendLine();
             }
