@@ -11,8 +11,8 @@ namespace Perelesoq.TestAssignment.Core.Runners
 {
     public sealed class LevelRunner : IDisposable
     {
+        private readonly DeviceNetwork _deviceNetwork = new();
         private DiContainer _diContainer;
-        private DeviceNetwork _deviceNetwork;
         private DeviceNetworkDiagnosticsContainer _diagnostics;
         private DevicePresenterManager _presenterManager;
 
@@ -23,7 +23,6 @@ namespace Perelesoq.TestAssignment.Core.Runners
             // This is sort of hit to performance on initial start, but this game is a prototype.
             var deviceInitializers = UnityEngine.Object.FindObjectsOfType<DeviceInitializer>(includeInactive: false);
 
-            _deviceNetwork = new DeviceNetwork();
 #if DEBUG
             _diagnostics = new(_deviceNetwork);
 #endif
@@ -98,6 +97,8 @@ namespace Perelesoq.TestAssignment.Core.Runners
 
             LevelViewInstaller.Install(_diContainer);
             LevelModelInstaller.Install(_diContainer);
+
+            _diContainer.BindInstance(_deviceNetwork);
 
             sceneContext.Resolve();
         }

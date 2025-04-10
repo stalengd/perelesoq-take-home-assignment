@@ -9,11 +9,11 @@ namespace Perelesoq.TestAssignment.Core.Devices.Lights
 
         private readonly GameObject _lightSource;
 
-        public LightDevice(GameObject lightSource)
+        public LightDevice(float powerUsage, GameObject lightSource)
         {
             _lightSource = lightSource;
 
-            Input = new();
+            Input = new(powerUsage);
 
             Input.IsPowered
                 .Subscribe(OnInputPowered);

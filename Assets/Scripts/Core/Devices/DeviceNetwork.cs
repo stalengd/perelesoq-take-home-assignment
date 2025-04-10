@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ObservableCollections;
 using Perelesoq.TestAssignment.Core.Devices.PowerSources;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace Perelesoq.TestAssignment.Core.Devices
         public IObservableCollection<Device> Devices => _devices;
 
         private readonly ObservableHashSet<Device> _devices = new();
+        private readonly HashSet<DeviceInputPort> _hungryPorts = new();
+        private readonly List<DeviceInputPort> _inputPortBuffer = new();
+        private bool _isDistributing;
 
         public void AddDevice(Device device)
         {
@@ -62,9 +66,10 @@ namespace Perelesoq.TestAssignment.Core.Devices
         private void RecalculateInputPowered(DeviceInputPort port)
         {
             var connectedOutput = port.Connection.Value;
-            var shouldBePowered = connectedOutput is { }
+            var wantsBePowered = connectedOutput is { }
                 && connectedOutput.IsPowered.Value
                 && connectedOutput.IsActive.Value;
+            var shouldBePowered = wantsBePowered;
 
             var totalPowerUsage = PowerSource.PowerUsage.Value;
             totalPowerUsage -= port.PowerUsage.Value;
@@ -75,13 +80,27 @@ namespace Perelesoq.TestAssignment.Core.Devices
                 shouldBePowered = false;
             }
 
+            if (wantsBePowered && !shouldBePowered)
+            {
+                _hungryPorts.Add(port);
+            }
+            else
+            {
+                _hungryPorts.Remove(port);
+            }
+
             portPowerUsage *= shouldBePowered ? 1 : 0;
-            totalPowerUsage += port.PowerUsage.Value;
+            totalPowerUsage += portPowerUsage;
 
             port.PowerUsage.Value = portPowerUsage;
             if (totalPowerUsage != PowerSource.PowerUsage.Value)
             {
+                var isLessUsage = totalPowerUsage < PowerSource.PowerUsage.Value;
                 PowerSource.PowerUsage.Value = totalPowerUsage;
+                if (isLessUsage)
+                {
+                    DistributePowerToHungry();
+                }
             }
 
             if (shouldBePowered == port.IsPowered.Value)
@@ -90,6 +109,24 @@ namespace Perelesoq.TestAssignment.Core.Devices
             }
 
             port.IsPowered.Value = shouldBePowered;
+        }
+
+        private void DistributePowerToHungry()
+        {
+            if (_hungryPorts.Count == 0 || _isDistributing)
+            {
+                return;
+            }
+            _isDistributing = true;
+            _inputPortBuffer.Clear();
+
+            _inputPortBuffer.AddRange(_hungryPorts);
+            foreach (var port in _inputPortBuffer)
+            {
+                RecalculateInputPowered(port);
+            }
+
+            _isDistributing = false;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using R3;
+using R3;
 
 namespace Perelesoq.TestAssignment.Core.Devices
 {
@@ -8,5 +8,15 @@ namespace Perelesoq.TestAssignment.Core.Devices
         public ReactiveProperty<float> PowerUsage { get; } = new(0f);
         public ReactiveProperty<DeviceOutputPort> Connection { get; } = new(null);
         public ReactiveProperty<bool> IsPowered { get; } = new(false);
+
+        public DeviceInputPort()
+        {
+
+        }
+
+        public DeviceInputPort(float powerUsage)
+        {
+            RequiredPower.Value = powerUsage;
+        }
     }
 }
