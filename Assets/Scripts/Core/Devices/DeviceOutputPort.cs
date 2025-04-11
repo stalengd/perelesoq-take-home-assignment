@@ -1,4 +1,4 @@
-﻿using ObservableCollections;
+using ObservableCollections;
 using R3;
 
 namespace Perelesoq.TestAssignment.Core.Devices
@@ -8,5 +8,15 @@ namespace Perelesoq.TestAssignment.Core.Devices
         public ObservableHashSet<DeviceInputPort> Connections { get; } = new();
         public ReactiveProperty<bool> IsActive { get; } = new(true);
         public ReactiveProperty<bool> IsPowered { get; } = new(false);
+
+        public DeviceOutputPort()
+        {
+
+        }
+
+        public DeviceOutputPort(bool isActive)
+        {
+            IsActive.Value = isActive;
+        }
     }
 }

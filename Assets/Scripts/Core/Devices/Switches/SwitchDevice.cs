@@ -11,10 +11,12 @@ namespace Perelesoq.TestAssignment.Core.Devices.Switches
 
         private readonly ReactiveProperty<bool> _isActive = new(false);
 
-        public SwitchDevice()
+        public SwitchDevice(bool isActive)
         {
             Input = new();
-            Output = new();
+            Output = new(isActive);
+
+            _isActive.Value = isActive;
 
             Input.IsPowered
                 .Skip(1)
