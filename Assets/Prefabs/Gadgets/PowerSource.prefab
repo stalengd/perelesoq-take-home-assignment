@@ -53,7 +53,7 @@ MonoBehaviour:
     <Name>k__BackingField: 
   _outputPort: {fileID: 8311853818462024158}
   _gameView: {fileID: 1983488679039396829}
-  _maxPower: 300
+  _maxPower: 400
 --- !u!114 &8311853818462024158
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,9 +6,9 @@ namespace Perelesoq.TestAssignment.Core.Devices.PowerSources
     public sealed class PowerSourceDevice : Device
     {
         public DeviceOutputPort Output { get; }
-        public float MaxPower { get; }
-        public ReactiveProperty<float> PowerUsage { get; } = new(0);
-        public ReactiveProperty<float> EnergyConsumed { get; } = new(0);
+        public float MaxPower { get; } // Watt (W)
+        public ReactiveProperty<float> PowerUsage { get; } = new(0); // Watt (W)
+        public float EnergyConsumed { get; private set; } // Watt-seconds (Ws)
         public TimeSpan Uptime { get; private set; }
 
         public PowerSourceDevice(float maxPower)
@@ -25,6 +25,7 @@ namespace Perelesoq.TestAssignment.Core.Devices.PowerSources
                 return;
             }
             Uptime += deltaTime;
+            EnergyConsumed += (float)(PowerUsage.Value * deltaTime.TotalSeconds);
         }
     }
 }

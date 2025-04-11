@@ -1,5 +1,6 @@
 using System;
 using Perelesoq.TestAssignment.Core.Devices;
+using Perelesoq.TestAssignment.Core.Util;
 using R3;
 using Zenject;
 
@@ -16,12 +17,17 @@ namespace Perelesoq.TestAssignment.Core.ControlPanel
         {
             if (_deviceNetwork.PowerSource is { } powerSource)
             {
-                _view.SetPowerLimit(powerSource.MaxPower);
                 powerSource.PowerUsage
-                    .Subscribe(power => _view.SetCurrentPower(power))
+                    .Subscribe(power => _view.SetPower(power, powerSource.MaxPower))
                     .AddTo(ref _disposables);
-                Observable.Interval(TimeSpan.FromSeconds(1f))
-                    .Subscribe(x => _view.SetTime(powerSource.Uptime))
+                Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(1f))
+                    .Subscribe(_ =>
+                    {
+                        _view.SetTime(powerSource.Uptime);
+                        _view.SetConsumedEnergy(
+                            PowerMath.WattHourToKilowattHour(
+                            PowerMath.WattSecondToWattHour(powerSource.EnergyConsumed)));
+                    })
                     .AddTo(ref _disposables);
             }
         }

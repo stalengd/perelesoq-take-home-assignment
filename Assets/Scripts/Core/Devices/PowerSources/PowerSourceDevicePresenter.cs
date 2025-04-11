@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using Perelesoq.TestAssignment.Core.DevicePresenters;
+using Perelesoq.TestAssignment.Core.Util;
 using R3;
 
 namespace Perelesoq.TestAssignment.Core.Devices.PowerSources
@@ -21,7 +22,8 @@ namespace Perelesoq.TestAssignment.Core.Devices.PowerSources
                 .Subscribe(x => _gameView.SetStatus(
                     _device.Uptime,
                     _device.PowerUsage.CurrentValue,
-                    _device.MaxPower))
+                    _device.MaxPower,
+                    PowerMath.WattHourToKilowattHour(PowerMath.WattSecondToWattHour(_device.EnergyConsumed))))
                 .AddTo(Disposables);
         }
     }
